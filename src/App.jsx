@@ -116,8 +116,11 @@ function App() {
     )
   }
 
+  // Get base path from vite config or default to /healthclub
+  const basePath = import.meta.env.BASE_URL || '/healthclub'
+  
   return (
-    <Router basename="/healthclub">
+    <Router basename={basePath}>
       <Routes>
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
@@ -133,6 +136,9 @@ function App() {
           <Route path="appointments" element={isAdmin ? <AppointmentsView /> : <Navigate to="/admin/login" replace />} />
           <Route path="login" element={isAdmin ? <Navigate to="/admin" replace /> : <AdminLogin setIsAdmin={setIsAdmin} />} />
         </Route>
+        
+        {/* Catch-all route for 404 */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   )
