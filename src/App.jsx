@@ -117,7 +117,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/healthclub">
       <Routes>
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
