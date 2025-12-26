@@ -15,7 +15,11 @@ export default function AdminLayout({ isAdmin, setIsAdmin }) {
   }
 
   const isActive = (path) => {
-    return location.pathname === path
+    // Handle exact match for /admin and startsWith for sub-routes
+    if (path === '/admin') {
+      return location.pathname === '/admin' || location.pathname === '/admin/'
+    }
+    return location.pathname.startsWith(path)
   }
 
   const menuItems = [
