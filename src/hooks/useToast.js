@@ -11,14 +11,19 @@ export function useToast() {
     setToast(null)
   }, [])
 
+  const showSuccess = useCallback((message) => showToast(message, 'success'), [showToast])
+  const showError = useCallback((message) => showToast(message, 'error', 5000), [showToast])
+  const showWarning = useCallback((message) => showToast(message, 'warning'), [showToast])
+  const showInfo = useCallback((message) => showToast(message, 'info'), [showToast])
+
   return {
     toast,
     showToast,
     hideToast,
-    showSuccess: (message) => showToast(message, 'success'),
-    showError: (message) => showToast(message, 'error', 5000),
-    showWarning: (message) => showToast(message, 'warning'),
-    showInfo: (message) => showToast(message, 'info')
+    showSuccess,
+    showError,
+    showWarning,
+    showInfo
   }
 }
 
